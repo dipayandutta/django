@@ -1,0 +1,110 @@
+sudo apt-get install postgresql-9.3
+sudo -u postgres psql
+ALTER USER postgres PASSWORD 'newpassword';
+psql -U postgres -h localhost
+
+sudo apt-get install pgadmin3
+
+sudo pip3 install psycopg2
+
+
+python3 manage.py shell 
+
+>>> from example.models import Company
+>>> google = Company(name='Google')
+>>> apple  = Company(name='Apple')
+>>> bluedragon = Company(name='Blue Dragon')
+>>> google.save()
+>>> apple.save()
+>>> bluedragon.save()
+
+# To modify 
+>>> google.name = 'Alphabet'
+>>> google.save()
+# To delete
+
+>>> apple.delete()
+(1, {'example.Company': 1})
+
+
+# Sample Query
+>>> google = Company.objects.get(pk=3)
+>>> google
+<Company: Company object (3)>
+>>> google.name
+'Blue Dragon'
+
+
+# Making a relationship
+>>> from example.models import Programmer , Company
+>>> apple = Company.objects.get(pk=4)
+>>> google = Company.objects.get(pk=1)
+>>> dragon = Company.objects.get(pk=3)
+>>> dragon.name 
+'Blue Dragon'
+>>> dragon.id
+3
+>>> dipayan = Programmer(name='Dipayan Dutta', company=dragon)
+>>> james   = Programmer(name='James', company=google)
+>>> jack    = Programmer(name='Jack', company=apple)
+>>> dipayan.save()
+>>> james.save()
+>>> jack.save()
+
+
+>>> dipayan.name
+'Dipayan Dutta'
+>>> dipayan.id
+1
+>>> dipayan.company
+<Company: Blue Dragon>
+
+
+# List of programmers in a company
+>>> apple.programmer_set
+<django.db.models.fields.related_descriptors.create_reverse_many_to_one_manager.<locals>.RelatedManager object at 0x7f3fd5feb208>
+>>> apple.programmer_set.all()
+<QuerySet [<Programmer: Jack>]>
+
+
+# ManyTO Many relation
+
+>>> from example.models import Programmer , Language
+>>> dipayan = Programmer.objects.get(pk=1)
+>>> james   = Programmer.objects.get(pk=2)
+>>> jack    = Programmer.objects.get(pk=3)
+>>> 
+>>> dipayan
+<Programmer: Dipayan Dutta>
+>>> dipayan.name
+'Dipayan Dutta'
+>>> dipayan.company
+<Company: Blue Dragon>
+>>> 
+>>> python = Language(name='Python')
+>>> objectiveC = Language(name='ObjectiveC')
+>>> java = Language(name='Java')
+>>> python.save()
+>>> ruby = Language(name='Ruby')
+>>> ruby.save()
+>>> objectivec.save()
+Traceback (most recent call last):
+  File "/usr/lib/python3.5/code.py", line 91, in runcode
+    exec(code, self.locals)
+  File "<console>", line 1, in <module>
+NameError: name 'objectivec' is not defined
+>>> objectiveC.save()
+>>> java.save()
+>>> dipayan.languages.add(python)
+>>> dipayan.languages.add(ruby)
+>>> james.languages.add(objectiveC)
+>>> dipayan.save()
+>>> james.save()
+>>> jack.languages.add(java)
+>>> jack.save()
+>>> dipayan.languages.all()
+<QuerySet [<Language: Python>, <Language: Ruby>]>
+>>> james.languages.all()
+<QuerySet [<Language: ObjectiveC>]>
+
+
