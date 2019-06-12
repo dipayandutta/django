@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+	{{ site_title }}
+	<p><b>+++++++++++++++++++++++++++++++++++++</b></p>
+	{% for object in object_list %}
+		<li> Title == > {{ object.title }}</li>
+		<li>Author == > {{ object.author }}</li>
+		<li>Content ==> {{ object.content }}</li>
+		<li>Created At == > {{ object.created_at }}</li>
+		<p><b>=======================================</b></p>
+	{% endfor %}
+{% endblock %}

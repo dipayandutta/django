@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{{ site_title }}
+{% block content %}
+	{{ object.title }}
+	{{ object.author }}
+	{{ object.content }}
+	{{ object.created_at }}
+{% endblock %}
