@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block heading %}
+	Book Store Application
+{% endblock %}
+
+{% block content %}
+	Avaliable books 
+	<table class="table table-dark">
+		<thead>
+			<tr>
+				<<th>Title</th>
+				<th>Price</th>
+				<th>Author</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for book in books %}
+				<tr>
+					<td>{{ book.title }}</td>
+					<td>{{ book.price }}</td>
+					<td>{{ book.author }}</td>
+					<td> <a class="btn btn-info" href="/edit/{{ book.id }}">Edit</a>
+						<a class="btn btn-danger" href="/delete/{{ book.id }}">Delete</a>
+					</td>
+				
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	<a class="btn btn-primary" href="/add/">Add Books</a>
+	<br>
+	<br>
+{% endblock %}

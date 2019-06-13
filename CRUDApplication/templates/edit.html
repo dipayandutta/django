@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{{ title }}
+
+{% block heading %}
+	Edit Books 
+{% endblock %}
+
+
+{% block content %}
+	<form action="/update/{{ result.id }}">
+		
+		{% csrf_token %}
+
+		<label class="form-group" for="title">Title:</label>
+		<input class="form-control" type="text" name="title" value="{{ result.title }}" placeholder="{{ result.title }}">
+		<br>
+
+		<label class="form-group" for="price">Price:</label>
+		<input class="form-control" type="number" name="price" value="{{ result.price}}" placeholder="{{ result.price }}">
+		<br>
+
+		<label class="form-group" for="author">Author:</label>
+		<input class="form-control" type="text" name="author" value="{{ result.author }}" placeholder="{{ result.author }}">
+
+		<br>
+
+		<input class="btn btn-primary" type="submit" value="update">
+
+	</form>
+{% endblock %}
