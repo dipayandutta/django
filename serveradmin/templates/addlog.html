@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block page_heading %}
+    Add Server Logs
+{% endblock page_heading %}
+
+{% block content %}
+    <div class="container">
+    
+        <form action="/create">
+            {% csrf_token %}
+
+            <label class="form-group" for ="author">Author:</label>
+            <input class="form-control" type="text" name="author"><br>
+
+            <label class="form-group" for="designation">Designation:</label>
+            <input class="form-control" type="text" name="designation"><br/>
+
+            <label class="form-group" for="subject">Subject</label>
+            <input class="form-control" type="text" name="subject"><br/>
+
+            <input class="btn btn-primary" type="submit" value="create">
+        </form>
+    </div>
+{% endblock content %}
