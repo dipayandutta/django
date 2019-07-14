@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}
+    {{ title }}
+{% endblock title %}
+
+{% block PageBody %}
+     <table class="table table-dark">
+        <thead> 
+            <tr>
+                <th>Serial No.</th>
+                <th>Date</th>
+                <th>Author</th>
+                <th>Designation</th>
+                <th>Subject</th>
+                <th>Reported To</th>
+                <th>Instructed By </th>
+            </tr>
+        </thead>
+        {% for data in logs %}
+            <tr>
+                <td>{{ data.SerialNumber }}</td>
+                <td>{{ data.CreatedAt }}</td>
+                <td>{{ data.Author }}</td>
+                <td>{{ data.Designation }}</td>
+                <td>{{ data.Subject }}</td>
+                <td>{{ data.ReportedTo }}</td>
+                <td>{{ data.InstructedBy }}</td>
+                <td></td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock PageBody %}
