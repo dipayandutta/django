@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}
+    {{ title }}
+{% endblock title %}
+
+{% block content %}
+    Servers
+{% endblock content %}
+
+{% block PageBody %}
+   
+    {% for result in output %}
+        <hr/>
+        {{ result }}<br/>
+    {% endfor %}
+{% endblock PageBody %}

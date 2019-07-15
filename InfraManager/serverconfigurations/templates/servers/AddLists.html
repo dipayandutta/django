@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {{ title }}
+{% endblock title %}
+
+{% block content %}
+    Add Servers Configuration Details
+{% endblock content %}
+
+{% block PageBody %}
+    <div class="container">
+        <form action="{% url 'Create' %}">
+            {% csrf_token %}
+
+            <label class="form-group" for="ipaddress">Internet Protocol Address:</label>
+            <input class="form-control" type="text" name="ipaddress"><br/>
+
+            <label class="form-group" for="hdd">Storage</label>
+            <input class="form-control" type="text" name="hdd"><br/>
+
+            <label class="form-group" for="ram">Memory</label>
+            <input class="form-control" type="text" name="ram"><br/>
+
+            <label class="form-group" for="core">core</label>
+            <input class="form-control" type="number" name="core"><br/>
+
+            
+            <label class="form-group" for="allocatedfor">Allocated For</label>
+            <input class="form-control" type="text" name="allocatedfor"><br/>
+
+            <label class="form-group" for="creationorder">Ordered By</label>
+            <input class="form-control" type="text" name="creationorder"><br/>
+            
+            <label class="form-group" for="os">Select OS Type</label>
+            <select name="os">
+                <option value="">--Please Chose the OS </option>
+                <option value="windows2008">Windows 2008</option>
+                <option value="linux">Linux</option>
+            </select>
+            <br/>
+            <br/>
+            <label class="form-group" for="license">Select license Type</label>
+            <select name="License">
+                <option value="">--Please Chose license</option>
+                <option value="paid">Microsoft</option>
+                <option value="opensource">Opensource</option>
+            </select>
+            <br/>
+            <br/>
+            <input class="btn btn-primary" type="submit" value="ADD">
+        <form>
+    </div>
+{% endblock PageBody %}

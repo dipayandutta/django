@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block title %}
+    {{ title }}
+{% endblock title %}
+
+{% block content %}
+    Server Details
+{% endblock content %}
+
+{% block PageBody %}
+    <table class="table table-dark">
+        <thead>
+            <tr>
+               
+                <td>Date</td>
+                <td>IP</td>
+                <td>Storage</td>
+                <td>Memory</td>
+                <td>Core</td>
+                <td>Allocated For</td>
+                <td>Ordered By</td>
+                <td>OS Type</td>
+                <td>License</td>
+                <td>Edit</td>
+                <td>DELETE</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for server in servers %}
+                <tr>
+                    
+                    <td>{{ server.CreatedAt }}</td>
+                    <td>{{ server.ipaddress }}</td>
+                    <td>{{ server.hdd }}</td>
+                    <td>{{ server.ram }}</td>
+                    <td>{{ server.core }}</td>
+                    <td>{{ server.allocatedfor }}</td>
+                    <td>{{ server.creationorder }}</td>
+                    <td>{{ server.os }}</td>
+                    <td>{{ server.License }}</td>
+                    <td><a class="btn btn-info" href="{% url 'editservers' server.SerialNumber %}">Edit</a></td>
+                    <td><a class="btn btn-danger" href="{% url 'deleteserver' server.SerialNumber %}">DELETE</a></td>
+                    <td></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <div class="paginator">
+        
+        {% if servers.has_previous %}
+            <a href="?page=1"><</a>
+            <a href="?page={{ servers.previous_page_number }}">Previous</a>
+        {% endif %}
+
+        {% for num in servers.paginator.page_range %}
+            {% if server.number == num %}
+                <strong>{{ num }} </strong>
+            {% endif %}
+        {% endfor %}
+        {% if servers.has_next %}
+            <a href="?page={{ servers.next_page_number }}">Next</a>
+            <!--<a href="?page={{ servers.paginator.num_pages }}">></a>-->
+        {% endif %}
+    </div>
+{% endblock PageBody %}
