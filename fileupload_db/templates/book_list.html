@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <title></title>
+    <style> 
+        
+        #customers {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        }
+
+        #customers td, #customers th {
+        border: 1px solid #ddd;
+        padding: 8px;
+        }
+
+        #customers tr:nth-child(even){background-color: #f2f2f2;}
+
+        #customers tr:hover {background-color: #ddd;}
+
+        #customers th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #4CAF50;
+        color: white;
+        }
+
+    </style>
+    <body>
+        <table id="customers">
+            <thead>
+                <tr>
+                    <th>Cover</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Download</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for book in books %}
+                    <tr>
+                        <td>
+                            {% if book.cover %}
+                                <img src="{{ book.cover.url }}" alt="{{ book.title}}" style="width:100px">
+                            {% else %}
+                                <span class="text-muted">No Cover</span>
+                            {% endif %}
+                        </td>
+                        <td>{{ book.title }}</td>
+                        <td>{{ book.author }}</td>
+                        <td><a href="{{ book.pdf.url }}">Download</a></td>
+                        <td>
+                            <form method="POST" action="{% url 'delete_book' book.id %}">
+                               {% csrf_token %}
+                               <button type="submit">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </body>
+</html>
