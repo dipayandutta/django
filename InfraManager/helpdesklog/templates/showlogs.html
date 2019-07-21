@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+
+{% block PageBody %}
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <td>SN</td>
+                <td>Date</td>
+                <td>HD Shift</td>
+                <td>Call From</td>
+                <td>Type of Problem</td>
+                <td>Contact Person</td>
+                <td>Solved</td>
+                <td>Remarks</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for log in logs %}
+                <tr>
+                    <td>{{ log.SerialNumber }}</td>
+                    <td>{{ log.Date }}</td>
+                    <td>{{ log.HDShift }}</td>
+                    <td>{{ log.CallFrom }}</td>
+                     <td>{{ log.ProblemType }}</td>
+                    <td>{{ log.CnctPerson }}</td>
+                    <td>{{ log.SolvedStatus }}</td>
+                    <td>{{ log.Remarks }}</td>
+                </tr>
+            {% endfor %}   
+        </tbody>
+    </table>
+{% endblock PageBody %}

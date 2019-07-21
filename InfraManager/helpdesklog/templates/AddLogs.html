@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {{ title }}
+{% endblock title %}
+
+{% block content %}
+    <p id="PageHeading">Add logs</p>
+    <hr/>
+{% endblock content %}
+
+{% block PageBody %}
+    <div class="container">
+        <form action = "{% url 'create' %}">
+            {% csrf_token %}
+           
+            <label class="form-group" for="hdshift">HD Shift:</label>
+            <input class="form-control" type="text" name="hdshift"><br/>
+
+             <label class="form-group" for="CallFrom">Call From:</label>
+            <input class="form-control" type="text" name="callfrom"><br/>
+
+            <label class="form-group" for="ProblemType">Type of Problem</label>
+            <input class="form-control" type="text" name="problemtype"><br/>
+           
+             <label class="form-group" for="Contact Person">Contact Person</label>
+            <input class="form-control" type="text" name="contactperson"><br/>
+           
+            <label class="form-group" for="SolutionStatus">Solution Status</label>
+            <input class="form-control" type="text" name="solutionstatus"><br/>
+
+            <label class="form-group" for="remarks">Remarks</label>
+            <input class="form-control" type="text" name="remarks"><br/>
+
+            
+            <input class="btn btn-primary" type="submit" value="create">
+        </form>
+    </div>
+{% endblock PageBody %}

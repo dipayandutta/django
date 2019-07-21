@@ -23,6 +23,7 @@ urlpatterns = [
     path('',include('account.urls')),
     path('logbook/',include('logbook.urls')),
     path('servers/',include('serverconfigurations.urls')),
+    path('helpdesk/',include('helpdesklog.urls'))
 ]
 
 if settings.DEBUG:
