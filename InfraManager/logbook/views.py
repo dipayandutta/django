@@ -3,13 +3,13 @@ from django.contrib.auth.decorators import login_required
 from .models import LogBookEntry
 # Create your views here.
 
-@login_required
+@login_required(login_url='/login/')
 def addlog(request):
     template = 'logs/addlog.html'
     title = 'Log Entry'
     return render(request,template,{'title':title})
 
-@login_required
+@login_required(login_url='/login/')
 def Create(request):
     
     author          = request.GET['author']
@@ -29,7 +29,7 @@ def Create(request):
 
     return redirect('addlog')
 
-@login_required
+@login_required(login_url='/login/')
 def showlog(request):
     title = 'showlog'
     template = 'logs/showlogs.html'
