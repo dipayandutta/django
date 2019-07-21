@@ -2,8 +2,10 @@ from django.shortcuts import render,redirect
 from django.core.paginator import Paginator
 from subprocess import Popen , PIPE
 from .models import ServerDetails
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+@login_required(login_url='/login/')
 def ShowServerLists(request):
    
     template = 'servers/servers.html'
@@ -27,6 +29,7 @@ def ShowServerLists(request):
     
     return render(request,template,{'title':title,'output':output})
 
+@login_required(login_url='/login/')
 def ShowServerDetails(request):
     template='servers/ShowDetails.html'
     title = 'servers'
@@ -36,11 +39,13 @@ def ShowServerDetails(request):
     servers = paginator.get_page(page)
     return render(request,template,{'title':title,'servers':servers})
 
+@login_required(login_url='/login/')
 def AddServers(request):
     title = 'add servers'
     template='servers/AddLists.html'
     return render(request,template,{'title':title})
 
+@login_required(login_url='/login/')
 def CreateServerLists(request):
 
     ipaddress   = request.GET['ipaddress']
@@ -58,13 +63,14 @@ def CreateServerLists(request):
 
     return redirect('addservers')
 
+@login_required(login_url='/login/')
 def EditServers(request,SerialNumber):
     server = ServerDetails.objects.get(pk=SerialNumber)
     template = 'servers/edit.html'
     title = 'edit servers'
     return render(request,template,{'title':title,'server':server})
 
-
+@login_required(login_url='/login/')
 def UpdateServerDetails(request,SerialNumber):
     server = ServerDetails.objects.get(pk=SerialNumber)
 
@@ -80,7 +86,7 @@ def UpdateServerDetails(request,SerialNumber):
     server.save()
     return redirect('serverdetails') 
 
-
+@login_required(login_url='/login/')
 def DeleteServerRecord(request,SerialNumber):
     server  = ServerDetails.objects.get(pk=SerialNumber)
     server.delete()
