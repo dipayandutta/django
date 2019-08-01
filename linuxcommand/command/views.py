@@ -3,5 +3,5 @@ import os
 # Create your views here.
 
 def command_view(request):
-	output = os.popen('ls -l').read()
+	output = os.popen('cat /etc/passwd').read()
 	return render(request,'output.html',{'output':output})
