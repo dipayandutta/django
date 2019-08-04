@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<h2>This are all {{title}} </h2>
+	<h3>{{ question.title }}</h3>	
+	<p>Details of {{ question.id }}</p>
+	<p>Poll Created By {{ question.created_by.first_name }}</p>
+	<p>Poll Creation time {{ question.create_at }}</p>
+{% endblock %}

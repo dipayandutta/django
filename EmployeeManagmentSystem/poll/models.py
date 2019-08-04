@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 class Question(models.Model):
 	title 		= models.TextField(null=True,blank=True)
 	status		= models.CharField(default='inactive',max_length=10)
-	created_by	= models.ForeignKey(User,null=True,blank=True,on_delete="models.CASCADE")
+	created_by	= models.ForeignKey(User,null=True,blank=True,on_delete=models.CASCADE)
 
 	create_at	= models.DateTimeField(null=True,blank=True)
 	updated_at	= models.DateTimeField(null=True,blank=True)
@@ -13,7 +13,7 @@ class Question(models.Model):
 		return self.title
 
 class Choice(models.Model):
-	question 	= models.ForeignKey('poll.Question',on_delete="CASCADE")
+	question 	= models.ForeignKey('poll.Question',on_delete=models.CASCADE)
 	text 		= models.TextField(null=True,blank=True)
 
 	create_at	= models.DateTimeField(auto_now_add=True)
