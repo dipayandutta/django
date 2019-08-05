@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .forms import ContactForm
+from .forms import ContactForm , SnipperForm
 # Create your views here.
 def contact(request):
 
@@ -18,3 +18,14 @@ def contact(request):
     form = ContactForm()
     return render(request,template,{'form':form})
     #return HttpResponse('Contact View')
+
+def snippet_detail(request):
+    template = 'form.html'
+    if request.method == 'POST':
+        form = SnipperForm(request.POST)
+        if form.is_valid():
+            print("VALID")
+            form.save()
+    
+    form = SnipperForm()
+    return render(request,template,{'form':form})
