@@ -1,0 +1,67 @@
+Category.objects.all()                                                                                                                        
+Out[6]: <QuerySet [<Category: Cutton Cushion>, <Category: Polyester Cushions>]>
+
+In [7]: Products.objects.get(id=9)                                                                                                                    
+Out[7]: <Products: Red Strip Square Cushion>
+
+In [8]: Products.objects.get(pk=2)                                                                                                                    
+Out[8]: <Products: Elephant Cushion>
+
+In [9]: category = Category.objects.get(id = 1)                                                                                                       
+
+In [10]: category                                                                                                                                     
+Out[10]: <Category: Polyester Cushions>
+
+In [11]: product = Products.objects.filter(category=category)                                                                                         
+
+In [12]: product                                                                                                                                      
+Out[12]: <QuerySet [<Products: Black Urban Cushion>, <Products: Floral Cushion>, <Products: Minion Cushion>, <Products: Paw patrol Cushion>, <Products: Red Decorative Cushion>]>
+
+In [13]: Products.objects.filter(name__startswith='Elephant')                                                                                         
+Out[13]: <QuerySet [<Products: Elephant Cushion>]>
+Products.objects.filter(price__range=(50,100))
+
+
+In [16]: from django.utils import timezone                                                                                                            
+
+In [17]: category = Category.objects.get(pk=2)                                                                                                        
+
+In [18]: category                                                                                                                                     
+Out[18]: <Category: Cutton Cushion>
+
+In [19]: p = Products.objects.create(name='Pug Dog',slug='pug-dog',description='This is a super stylish cushion is 100% cotton made',category=category
+    ...: ,price=400.00,image='/home/dipayan/Downloads/project_images/project_images/product_images/pug_dog.jpg',stock=10,available=True,created=timezo
+    ...: ne.now(),update=timezone.now())                                                                                                              
+
+In [20]: p                                                                                                                                            
+Out[20]: <Products: Pug Dog>
+
+In [21]: p.image                                                                                                                                      
+Out[21]: <ImageFieldFile: /home/dipayan/Downloads/project_images/project_images/product_images/pug_dog.jpg>
+
+In [22]: p.image.url                                                                                                                                  
+Out[22]: '/media/home/dipayan/Downloads/project_images/project_images/product_images/pug_dog.jpg'
+
+In [23]: p.save()        
+
+
+
+++++++++++++++++++++++++++++=Templates++++++++++++++++++++++++++++==
+
+Block tags are represented like this 
+
+{% block any_name %}
+    Put your codes here
+{% endblock %}
+
+{% comment %}
+    put your codes here
+{% endcomment %}
+
+{% for some in something %}
+    {{ some }}
+{% endfor %}
+
+{% url '....' %}
+{% load ... %}
+{% extends 'base.html '%}
