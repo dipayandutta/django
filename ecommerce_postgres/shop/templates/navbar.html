@@ -1,0 +1,11 @@
+<nav>
+    <ul>
+        <li><a href="{% url 'shop:allProduct' %}">All Product</a></li>
+        {% for cat in links %}
+						<!--This li calls the get_url from the database -->
+            <li><a href="{{cat.get_url}}">{{ cat.name }}</a></li>
+        {% endfor %}
+        <li>Your Cart()<li>
+    </ul>
+</nav>
+<br>

@@ -1,0 +1,21 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="all products" content="{% block metadescription %}{% endblock %}">
+		<title>{% block title %}{% endblock %}</title>
+  </head>
+  <body>
+		<div>
+			{% include 'header.html' %}
+			{% include 'navbar.html' %}
+			
+			{% block content %}
+			{% endblock %}
+		</div>
+		
+		{% include 'footer.html' %}
+  </body>
+</html>

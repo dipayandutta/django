@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block metadescription %}
+	{% if category %}
+		{{ category.description|truncatewords:155 }}
+	{% else %}
+		Welcome to The Cusion Store
+	{% endif %}
+{% endblock %}
+
+{% block title %}
+	{% if category %}
+		{{ category.name }} -- Welcome to the Store application
+	{% else %}
+		Check all the collections
+	{% endif %}
+{% endblock %}
+
+{% block content %}
+<!--Navigation -->
+	{% if category %}
+		<div>
+			<div>
+				<p>
+					<a href="{% url 'shop:allProduct' %}">Our Product Collection </a>
+					{{ category.name }}
+				</p>
+			</div>
+		</div>
+	{%  endif %}
+			<div>
+				{% if category %}
+					<img src="{{ category.image.url }}" alt="{{ category.name }}">
+			</div>
+			<br>
+			<div>
+				<h1>{{ category.name }} </h1>
+				<p>{{ category.description }}</p>
+			<div>
+			{% else %}
+				<img src = "{% static 'img/banner.jpg' %}" alt="Our Product Collection">
+				<div>
+					<h1> Our Product Collection</h1>
+				</div>
+			{% endif %}
+			
+			<div>
+				<div>
+					{% for product in products %}
+						<div>
+							<div>
+								<a href="{{ product.get_url }}"><img src="{{ product.image.url}}" alt="{{ product.name }}">
+								<div>
+									<h4>
+											{{ product.name }}
+											${{ product.price }}
+									</h4>
+								</div>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+{% endblock %}
