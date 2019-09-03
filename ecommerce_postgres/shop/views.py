@@ -15,6 +15,7 @@ def allProduct(request,c_slug=None):
 	# if yes
 	if c_slug != None:
 		# Try to get the object from the database or return 404 error 
+		# Fetching using slug 
 		c_page 		= get_object_or_404(Category,slug=c_slug)
 		products  = Product.objects.filter(category=c_page,available=True)
 	else:
