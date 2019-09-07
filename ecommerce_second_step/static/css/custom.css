@@ -54,3 +54,8 @@
     text-transform: uppercase;
     letter-spacing: .2em;
 }
+
+/**Search Application CSS**/
+.my_search_text{
+    padding-top: 20px;
+}
