@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+<!--metadescription for the category if the category exists-->
+{% block metadescription %}
+    <!--If the category URL hits-->
+    {% if category %}
+        {{ category.description|truncatewords:155 }}
+    {% else %}
+    <!--else for all the product Display -->
+        Welcome to the cusion store
+    {% endif %}
+{% endblock %}
+<!--End of the metadescription tag-->
+
+<!--Dynamic Title-->
+{% block title %}
+     {% if category %}
+     <!--Title name for the category -->
+        {{ category.name }} - Perfect Cusion Store
+    {% else %}
+    <!--To display all the product use this following title -->
+        Check the Cusion Collection - Perfect Cusion Store
+    {% endif %}
+{% endblock %}
+<!--End of Title -->
+
+
+{% block content %}
+
+<!--Navigation-->
+<!--IF category exists then -->
+    {% if category %}
+        <div class="row my_row_class">
+            <div class="mx-auto">
+                <h1 class="text-center my_title"><a href="{% url 'shop:allProdCat' %}">Our Product Collection</h1>| 
+                    {{ category.name }}
+                </p>
+            </div>
+        </div>
+    {% endif %}
+    
+    <div class="mx-auto">
+        {% if category %}
+            <img class="my_image" src="{{ category.image.url }}" alt="{{ category.name }}">
+    </div>
+    <br>
+    <div>
+        <h1 class="text-center my_title">{{ category.name }}</h1>
+        <p class="text-justify">{{ category.description }}</p>
+    </div>
+    <!-- category logic ends here-->
+
+    <!--Now to display all the products in the Database -->
+    {% else %}
+        <img  class="my_image my_image_padding" src="{% static 'img/banner.jpg' %}" alt="Our Products Collection">
+    </div>
+    <br>
+    <div>
+        <h1>Our Products Collection </h1>
+        <p>Some Messages ....................
+        ....................
+        ....................
+        .....................
+        
+        </p>
+    </div>
+    {% endif %}
+<!-- category and all product display logic ends here-->
+
+<!-- Display all the products -->
+    <div class="container">
+        <div class="row mx-auto">
+            {% for product in products %}
+                <div class="my_button_margin col-9 col-sm-12 col-md-4 col-md-12 col-lg-4">
+                    <div class="card" style="min-width: 18rem;">
+                        <a href="{{ product.get_url }}"><img class="card-img-top my_image" src="{{product.image.url}}" alt="{{ product.name }}"></a>
+                        <div class="card-body">
+                            <h4>
+                                {{ product.name }}
+                                <p>${{ product.price }}</p>
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <!-- For Pagination -->
+        <div class="mx-auto">
+            {% if products.paginator.num_pages > 1 %}
+                <hr>
+                <div class="text-center">
+                    {% for pg in products.paginator.page_range %}
+                        <a href="?page={{pg}}" class="btn btn-light btn-sm {% if products.number == pg %} active {% endif %}">{{pg}}</a>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+        <br>
+    </div>
+{% endblock %}
