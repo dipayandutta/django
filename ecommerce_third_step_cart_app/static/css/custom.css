@@ -59,3 +59,20 @@
 .my_search_text{
     padding-top: 20px;
 }
+/***Cart application Table**/
+.my_custom_table{
+    min-width: 400px;
+    font-size: 14px;
+
+}
+.my_custom_thead{
+    font-weight: normal;
+    text-transform: uppercase;
+    letter-spacing: 2em;
+    background-color:#f8f9fa !important;
+}
+.custom_image{
+    width: 100px;
+    height: 100px;
+    
+}
