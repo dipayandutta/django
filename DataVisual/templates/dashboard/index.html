@@ -1,4 +1,65 @@
+{% extends 'base.html' %}
 {% load static %}
 
-<h1>Hello World!</h1>
-<script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+{% load crispy_forms_tags %}
+
+{% block content %}
+	<div class="row mt-3 pt-3">
+		<div class="col-md-4">
+			<div class="border p-3 shadow">
+				<h4>{{ add_data }} </h4>
+				
+				<hr>
+				<form method="POST">
+
+					{% csrf_token %}
+					{{ form|crispy }}
+					<hr>
+					<input type="submit"  class="btn btn-block btn-success" name="submit" value="Add">
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-md-8">
+		
+		<canvas id="myChart" width="500" height="200"></canvas>
+		<script>
+		var ctx = document.getElementById('myChart').getContext('2d');
+		var myChart = new Chart(ctx, {
+		    type: 'bar',
+		    data: {
+		        labels: [{% for data in data %} '{{ data.country }}', {% endfor %}],
+		        datasets: [{
+		            label: 'Population Index (Millions)',
+		            data: [{% for data in data %} '{{ data.population }}', {% endfor %} ],
+		            backgroundColor: [
+		                'rgba(255, 99, 132, 1)',
+		                'rgba(54, 162, 235, 1)',
+		                'rgba(255, 206, 86, 1)',
+		                'rgba(75, 192, 192, 1)',
+		                'rgba(153, 102, 255, 1)',
+		                'rgba(255, 159, 64, 1)'
+		            ],
+		            borderColor: [
+		                'rgba(255, 99, 132, 1)',
+		                'rgba(54, 162, 235, 1)',
+		                'rgba(255, 206, 86, 1)',
+		                'rgba(75, 192, 192, 1)',
+		                'rgba(153, 102, 255, 1)',
+		                'rgba(255, 159, 64, 1)'
+		            ],
+		            borderWidth: 1
+		        }]
+		    },
+		    options: {
+		        scales: {
+		            y: {
+		                beginAtZero: false
+		            }
+		        }
+		    }
+		});
+		</script>
+	</div>
+{% endblock %}
