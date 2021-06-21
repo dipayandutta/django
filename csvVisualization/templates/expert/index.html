@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Upload{% endblock title %}
+
+{% block content %}
+	<div class="container card mt-3 py-3">
+		<h3>Please Upload Your CSV File</h3>
+		<form method="POST" enctype="multipart/form-data">
+			{% csrf_token %}
+			<div class="row content">
+				<div class="col">
+					<input type="file" name="document" id="document" required="required">
+				</div>
+				<div class="col">
+					<input type="text" name="attributeid" id="attributeid" required="required" placeholder="Attribute ID">
+				</div>
+				<div class="col">
+					
+					<button id="submit" class="btn btn-primary ">upload!</button>
+				</div>
+				
+				
+				
+			</div>
+		</form>
+	</div>
+
+	<div class="container">
+		{% block message %}
+			{% if messages %}
+				{% for message in messages %}
+					{{ message }}
+				{% endfor %}
+			{% endif %}
+		{% endblock %}
+	</div>
+{% endblock %}
