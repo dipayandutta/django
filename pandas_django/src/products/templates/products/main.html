@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}
+	Home Page
+{% endblock title %}
+
+{% block content %}
+	<h1>Hello World!</h1>
+	<p>{{products | safe }}</p>
+	<hr>
+	<p>{{ purchase | safe }}</p>
+{% endblock content %}
