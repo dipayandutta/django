@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block title %}
 	Home Page
 {% endblock title %}
@@ -8,4 +10,6 @@
 	<p>{{products | safe }}</p>
 	<hr>
 	<p>{{ purchase | safe }}</p>
+	<hr>
+	<p>{{ df | safe }}</p>
 {% endblock content %}
