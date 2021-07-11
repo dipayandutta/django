@@ -14,6 +14,7 @@ def chart_select_view(request):
 	graph = None
 	error_message = None
 	df = None
+	price = None
 	product_df = pd.DataFrame(Product.objects.all().values())
 	purchase_df= pd.DataFrame(Purchases.objects.all().values())
 	#print(product_df)
@@ -28,6 +29,8 @@ def chart_select_view(request):
 			Merging to Dataframe
 		'''
 		df = pd.merge(purchase_df,product_df,on='product_id').drop(['id_y','date_y'],axis=1).rename({'id_x':'id','date_x':'date'},axis=1)
+		price = df['price']
+
 
 		#printing date
 		#print(df['date'][0])
@@ -71,6 +74,7 @@ def chart_select_view(request):
 
 	context  = {
 		'graph':graph,
+		'price':price,
 		'error_message':error_message,
 		#'products':product_df.to_html(),
 		#'purchase':purchase_df.to_html(),
