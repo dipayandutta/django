@@ -32,16 +32,16 @@ def get_simple_plot(chart_type,*args,**kwargs):
 	
 
 	if chart_type == 'bar plot':
-		title = "title"
+		title = "Total Price By Day(Bar plot)"
 		plt.title(title)
 		plt.bar(x,y)
 	elif chart_type == 'line plot':
-		title = 'title'
+		title = 'Total Price By Day(Line)'
 		plt.title(title)
 		plt.plot(x,y)
 
 	else:
-		title = "title"
+		title = "Product Count(Count plot)"
 		plt.title(title)
 		sns.countplot('name',data=data)
 
