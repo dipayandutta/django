@@ -1,10 +1,17 @@
 {% extends 'base.html' %}
-
 {% block title %}
 	Add Purchase Records
 {% endblock %}
-
 {% block content %}
+	{% if add_message %}
+		<div class="ui success message">
+			<i class="close icon"></i>
+			<div class="header">
+				{{ add_message }}
+			</div>
+			
+		</div>
+	{% endif %}
 	<h1>Add</h1>
 	<form action="" method="POST" class="ui form">
 		

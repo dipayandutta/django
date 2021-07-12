@@ -85,16 +85,19 @@ def chart_select_view(request):
 	return render(request,'products/main.html',context)
 
 def add_purchase_view(request):
+	
 	form = PurchaseForm(request.POST or None)
-
+	add_message = None
 	if form.is_valid():
 		obj = form.save(commit=False)
 		obj.salesman = request.user
 		obj.save()
 
 		form = PurchaseForm()
+		add_message = 'The Purchase Record Updated'
 		
 	context = {
 		'form':form,
+		'add_message':add_message,
 	}
 	return render(request,'products/add.html',context)
