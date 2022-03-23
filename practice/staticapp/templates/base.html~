@@ -1,0 +1,28 @@
+{% load static %}
+{% load staticfiles %}
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <title>
+            {% block title %}
+            {% endblock %}
+        </title>
+
+        <!--Bootstrap CSS Load from Static-->
+        <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+    </head>
+
+    <body>
+        <!--include navbar-->
+        {% include "navbar.html" %}
+        <p>
+            {% block content %}
+            {% endblock %}
+        </p>
+        <script src="{% static 'js/jquery.min.js' %}"></script>
+        <script src="{% static 'js/bootstrap.min.js'%}"></script>
+    </body>
+</html>
