@@ -1,0 +1,46 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    
+    <title>{% block title %}
+    
+    {% endblock title %}</title>
+ 
+   <!-- Bootstrap core CSS -->
+    <link href="{% static 'bootstrap/css/bootstrap.css' %}" rel="stylesheet">
+
+    <link href="{% static 'custom_css/my.css' %}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+   <!-- <link href="starter-template.css" rel="stylesheet">-->
+  </head>
+
+  <body>
+    <!--including navbar-->
+    {% include "navbar.html" %}
+    <br/>
+    <main role="main" class="container">
+
+      <div class="container">
+        {% block content  %}
+        
+        {% endblock content  %}
+      </div>
+
+      
+    </main><!-- /.container -->
+
+    <!--including footer-->
+    {% include "footer.html" %}
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{% static 'bootstrap/js/jquery.min.js' %}" ></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    
+  </body>
+</html>
